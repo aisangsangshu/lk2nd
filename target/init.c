@@ -103,6 +103,7 @@ __WEAK int target_is_emmc_boot(void)
 #if _EMMC_BOOT
     return 1;
 #else
+1
     return 0;
 #endif
 }

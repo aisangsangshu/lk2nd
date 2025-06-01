@@ -15,7 +15,7 @@ else
 DEBUG := 1
 endif
 endif
-
+#使用emmc启动
 EMMC_BOOT := 1
 
 ifeq ($(ENABLE_DISPLAY),1)

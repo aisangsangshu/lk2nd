@@ -38,7 +38,7 @@ OBJS += \
 	$(LOCAL_DIR)/rpm-smd.o \
 	$(LOCAL_DIR)/smd.o
 endif
-
+#开启这个就会使用mmc_wrapper.c而不是mmc.c
 ifeq ($(ENABLE_SDHCI_SUPPORT),1)
 OBJS += \
 	$(LOCAL_DIR)/sdhci.o \

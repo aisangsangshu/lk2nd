@@ -5181,7 +5181,7 @@ void aboot_init(const struct app_descriptor *app)
 #endif
 
 	/* Setup page size information for nv storage */
-	if (target_is_emmc_boot())
+	if (target_is_emmc_boot())//emmc启动分支执行
 	{
 		page_size = mmc_page_size();
 		page_mask = page_size - 1;

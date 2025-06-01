@@ -158,6 +158,7 @@ unsigned int SWAP_ENDIAN(unsigned int val)
 	    (((val >> 8) & 0xFF) << 16) | (((val >> 16) & 0xFF) << 8) | (val >>
 									 24);
 }
+//开启了ENABLE_SDHCI_SUPPORT就会不使用这个mmc_page_size
 
 uint32_t mmc_page_size()
 {
