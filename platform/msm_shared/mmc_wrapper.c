@@ -476,7 +476,7 @@ uint64_t mmc_get_device_capacity()
  */
 uint32_t mmc_get_device_blocksize()
 {
-	if (platform_boot_dev_isemmc())
+	if (platform_boot_dev_isemmc())//默认执行
 	{
 		struct mmc_card *card;
 

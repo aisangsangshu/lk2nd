@@ -5183,7 +5183,7 @@ void aboot_init(const struct app_descriptor *app)
 	/* Setup page size information for nv storage */
 	if (target_is_emmc_boot())//emmc启动分支执行
 	{
-		page_size = mmc_page_size();
+		page_size = mmc_page_size();//2048
 		page_mask = page_size - 1;
 		mmc_blocksize = mmc_get_device_blocksize();
 		mmc_blocksize_mask = mmc_blocksize - 1;
@@ -5193,7 +5193,7 @@ void aboot_init(const struct app_descriptor *app)
 		page_size = flash_page_size();
 		page_mask = page_size - 1;
 	}
-	ASSERT((MEMBASE + MEMSIZE) > MEMBASE);
+	ASSERT((MEMBASE + MEMSIZE) > MEMBASE);//true不陷入
 
 	lk2nd_init();
 	read_device_info(&device);

@@ -405,7 +405,7 @@ void display_bootverify_option_menu_renew(struct select_msg_info *msg_info)
 	display_fbcon_menu_message("Options menu:\n\n",
 		FBCON_COMMON_MSG, big_factor);
 	display_fbcon_menu_message("Press volume key to select, and "\
-		"press power key to select\n\n", FBCON_COMMON_MSG, common_factor);
+		"press power key to select 1\n\n", FBCON_COMMON_MSG, common_factor);
 
 	for (i = 0; i < len; i++) {
 		fbcon_draw_line(FBCON_COMMON_MSG);
