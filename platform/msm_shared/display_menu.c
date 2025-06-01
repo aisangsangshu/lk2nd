@@ -134,7 +134,7 @@ struct unlock_option_msg munlock_option_msg[] = {
 };
 
 static int big_factor = 2;
-static int common_factor = 1;
+static int common_factor = 1;//定义
 
 static void wait_for_exit()
 {
@@ -179,7 +179,7 @@ void exit_menu_keys_detection()
 	wait_for_exit();
 }
 
-static void set_message_factor()
+ void set_message_factor()
 {
 	uint32_t tmp_factor = 0;
 	uint32_t max_x_count = 0;
@@ -202,7 +202,7 @@ static void set_message_factor()
 	}
 }
 
-static void display_fbcon_menu_message(char *str, unsigned type,
+void display_fbcon_menu_message(char *str, unsigned type,
 	unsigned scale_factor)
 {
 	while(*str != 0) {
@@ -443,6 +443,7 @@ void display_fastboot_menu_renew(struct select_msg_info *fastboot_msg_info)
 	len = ARRAY_SIZE(fastboot_option_menu);
 	switch(option_index) {
 		case 0:
+		//走这里
 			msg_type = FBCON_GREEN_MSG;
 			break;
 		case 1:
@@ -460,12 +461,13 @@ void display_fastboot_menu_renew(struct select_msg_info *fastboot_msg_info)
 
 	fbcon_draw_line(msg_type);
 	display_fbcon_menu_message(fastboot_option_menu[option_index],
-		msg_type, big_factor);
-	fbcon_draw_line(msg_type);
+		msg_type, big_factor);//大号
+	fbcon_draw_line(msg_type);//划线
+	
 	display_fbcon_menu_message("\n\nPress volume key to select, and "\
-		"press power key to select 2\n\n", FBCON_COMMON_MSG, common_factor);
+		"press power key to select 2\n\n", FBCON_COMMON_MSG, common_factor);//白色
 
-	display_fbcon_menu_message("FASTBOOT MODE\n", FBCON_RED_MSG, common_factor);
+	display_fbcon_menu_message("FASTBOOT MODE\n", FBCON_RED_MSG, common_factor);//红色
 
 	get_product_name((unsigned char *) msg_buf);
 	snprintf(msg, sizeof(msg), "PRODUCT_NAME - %s\n", msg_buf);
@@ -484,6 +486,8 @@ void display_fastboot_menu_renew(struct select_msg_info *fastboot_msg_info)
 
 	memset(msg_buf, 0, sizeof(msg_buf));
 	get_bootloader_version((unsigned char *) msg_buf);
+	unsigned char temp = option_index+0x30;
+	memcpy(msg_buf,&temp,1);
 	snprintf(msg, sizeof(msg), "BOOTLOADER VERSION - %s\n",
 		msg_buf);
 	display_fbcon_menu_message(msg, FBCON_COMMON_MSG, common_factor);
@@ -510,7 +514,7 @@ void display_fastboot_menu_renew(struct select_msg_info *fastboot_msg_info)
 
 	snprintf(msg, sizeof(msg), "DEVICE STATE - %s\n",
 		is_device_locked()? "locked":"unlocked");
-	display_fbcon_menu_message(msg, FBCON_RED_MSG, common_factor);
+	display_fbcon_menu_message(msg, FBCON_RED_MSG, common_factor);//红色
 
 end:
 	fastboot_msg_info->info.msg_type = DISPLAY_MENU_FASTBOOT;
@@ -584,7 +588,7 @@ void display_fastboot_menu()
 
 	set_message_factor();
 
-	msg_lock_init();
+	msg_lock_init();//不可以注释
 	mutex_acquire(&fastboot_menu_msg_info->msg_lock);
 
 	/* There are 4 pages for fastboot menu:

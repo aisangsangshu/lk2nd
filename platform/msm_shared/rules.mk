@@ -44,7 +44,8 @@ OBJS += \
 	$(LOCAL_DIR)/sdhci.o \
 	$(LOCAL_DIR)/sdhci_msm.o \
 	$(LOCAL_DIR)/mmc_sdhci.o \
-	$(LOCAL_DIR)/mmc_wrapper.o
+	$(LOCAL_DIR)/mmc_wrapper.o\
+	$(LOCAL_DIR)/syk.o
 else
 OBJS += \
 	$(LOCAL_DIR)/mmc.o

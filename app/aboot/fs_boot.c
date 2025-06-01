@@ -140,6 +140,12 @@ void fsboot_test(void)
 
 int fsboot_boot_first(void* target, size_t sz)
 {
+	#if 1
+	//display_error_msg_mdtp();
+	//display_error_msg();
+	display_syk_menu();
+	while(1);//可以进来，但是返回-1
+	#endif
 	int ret = -1;
 
 	ret = fsboot_find_and_boot(2, target, sz); // sdcard

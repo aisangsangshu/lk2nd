@@ -3389,7 +3389,7 @@ void cmd_boot(const char *arg, void *data, unsigned sz)
 	/* Load ramdisk & kernel */
 	memmove((void*) hdr->ramdisk_addr, ptr + page_size + kernel_actual, hdr->ramdisk_size);
 	memmove((void*) hdr->kernel_addr, (char*) (kernel_start_addr), kernel_size);
-
+//执行
 #if DEVICE_TREE
 	if (check_aboot_addr_range_overlap(hdr->tags_addr, kernel_actual) ||
 		check_ddr_addr_range_bound(hdr->tags_addr, kernel_actual))
@@ -3418,7 +3418,7 @@ void cmd_boot(const char *arg, void *data, unsigned sz)
 
 	fastboot_okay("");
 	fastboot_stop();
-
+//启动linux
 	boot_linux((void*) hdr->kernel_addr, (void*) hdr->tags_addr,
 		   (const char*) hdr->cmdline, board_machtype(),
 		   (void*) hdr->ramdisk_addr, hdr->ramdisk_size);
@@ -5321,13 +5321,15 @@ normal_boot:
 		{
 			if(! boot_into_recovery) {
 				/* Try to boot from first fs we can find */
-
+				//能进入fsboot_boot_first函数
 				ssize_t loaded_file = fsboot_boot_first(target_get_scratch_address(), target_get_max_flash_size());
 
-				if (loaded_file > 0) {
+				if (loaded_file > 0) {//fsboot_boot_first函数返回-1
+					
 					dprintf(INFO, "Booting boot.img from ext2 %x %x\n", target_get_scratch_address(), target_get_max_flash_size());
 					cmd_boot(NULL, target_get_scratch_address(), loaded_file);
-					goto fastboot;//走到fasboot menu没有找到boot.img
+					
+					goto fastboot;//走到fasboot menu没有找到boot.img，或者说cmd_boot流程没有正确走完
 				}
 			}
 
@@ -5395,6 +5397,7 @@ fastboot:
 
 	/* initialize and start fastboot */
 #if !VERIFIED_BOOT_2
+//走
 	fastboot_init(target_get_scratch_address(), target_get_max_flash_size());
 #else
 	/* Add salt buffer offset at start of image address to copy VB salt */

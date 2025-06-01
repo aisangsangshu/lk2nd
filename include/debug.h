@@ -38,6 +38,7 @@ extern "C" {
 #if defined(DEBUG)
 #define DEBUGLEVEL DEBUG
 #else
+1
 #define DEBUGLEVEL 2
 #endif
 
