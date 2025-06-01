@@ -154,7 +154,7 @@ static int bootstrap2(void *arg)
 	target_init();
 
 	dprintf(SPEW, "calling apps_init()\n");
-	apps_init();
+	apps_init();//初始化面板
 
 	return 0;
 }

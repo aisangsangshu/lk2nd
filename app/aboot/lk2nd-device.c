@@ -10,7 +10,7 @@
 #include <string.h>
 #include <libfdt.h>
 #include "lk2nd-device.h"
-
+//全局变量
 struct lk2nd_device lk2nd_dev = {0};
 extern struct board_data board;
 

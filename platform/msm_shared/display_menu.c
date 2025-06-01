@@ -579,7 +579,7 @@ void display_fastboot_menu()
 	struct select_msg_info *fastboot_menu_msg_info;
 	fastboot_menu_msg_info = &msg_info;
 
-	if (is_display_disabled())
+	if (is_display_disabled())//可以显示
 		return;
 
 	set_message_factor();

@@ -51,7 +51,7 @@ struct board_data board = {UNKNOWN,
 	0,
 	NULL,
 };
-
+//初始化board结构
 static void platform_detect()
 {
 	struct smem_board_info_v6 board_info_v6;

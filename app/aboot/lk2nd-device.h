@@ -12,7 +12,7 @@ struct lk2nd_panel {
 	int compatible_size;
 	const char *ts_compatible;
 };
-
+//lk2nd结构
 struct lk2nd_device {
 	void *fdt;
 	const char *model;

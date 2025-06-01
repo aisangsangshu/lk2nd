@@ -2874,7 +2874,7 @@ void read_device_info(device_info *dev)
 		if(info == NULL)
 		{
 			dprintf(CRITICAL, "Failed to allocate memory for device info struct\n");
-			ASSERT(0);
+			ASSERT(0);//陷入
 		}
 		info_buf = info;
 
@@ -5195,7 +5195,7 @@ void aboot_init(const struct app_descriptor *app)
 	}
 	ASSERT((MEMBASE + MEMSIZE) > MEMBASE);//true不陷入
 
-	lk2nd_init();
+	lk2nd_init();//已经完成board初始化
 	read_device_info(&device);
 	read_allow_oem_unlock(&device);
 
@@ -5235,7 +5235,7 @@ void aboot_init(const struct app_descriptor *app)
 		else
 			display_image_on_screen();
 #else
-//执行
+//执行，完成面板初始化
 		target_display_init(device.display_panel);
 #endif
 		dprintf(SPEW, "Display Init: Done\n");
@@ -5327,7 +5327,7 @@ normal_boot:
 				if (loaded_file > 0) {
 					dprintf(INFO, "Booting boot.img from ext2 %x %x\n", target_get_scratch_address(), target_get_max_flash_size());
 					cmd_boot(NULL, target_get_scratch_address(), loaded_file);
-					goto fastboot;
+					goto fastboot;//走到fasboot menu没有找到boot.img
 				}
 			}
 
