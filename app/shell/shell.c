@@ -33,7 +33,7 @@ static void shell_entry(const struct app_descriptor *app, void *args)
 {
 	console_start();
 }
-
+//存在entry
 APP_START(shell)
 	.init = shell_init,
 	.entry = shell_entry,

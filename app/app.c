@@ -33,7 +33,7 @@ static void start_app(const struct app_descriptor *app);
 void apps_init(void)
 {
 	const struct app_descriptor *app;
-
+	//执行所有的注册函数
 	/* call all the init routines */
 	for (app = &__apps_start; app != &__apps_end; app++) {
 		if (app->init)

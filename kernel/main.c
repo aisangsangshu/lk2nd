@@ -62,11 +62,12 @@ static void call_constructors(void)
 		ctor++;
 	}
 }
-
+//入口函数
 /* called from crt0.S */
 void kmain(void) __NO_RETURN __EXTERNALLY_VISIBLE;
 void kmain(void)
 {
+	
 	thread_t *thr;
 
 	// get us into some sort of thread context
@@ -105,11 +106,12 @@ void kmain(void)
 	// initialize kernel timers
 	dprintf(SPEW, "initializing timers\n");
 	timer_init();
-
+//默认开启，开启多线程
 #if (!ENABLE_NANDWRITE)
 	// create a thread to complete system initialization
 	dprintf(SPEW, "creating bootstrap completion thread\n");
 	thr = thread_create("bootstrap2", &bootstrap2, NULL, DEFAULT_PRIORITY, DEFAULT_STACK_SIZE);
+	//panic无法显示出来
 	if (!thr)
 	{
 		panic("failed to create thread bootstrap2\n");
@@ -156,8 +158,9 @@ static int bootstrap2(void *arg)
 
 	return 0;
 }
-
+//没开启
 #if (ENABLE_NANDWRITE)
+1
 void bootstrap_nandwrite(void)
 {
 	dprintf(SPEW, "top of bootstrap2()\n");

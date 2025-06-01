@@ -5436,7 +5436,7 @@ static int aboot_save_boot_hash_mmc(uint32_t image_addr, uint32_t image_size)
 	return 0;
 }
 
-
+//只有init，没有entry
 APP_START(aboot)
 	.init = aboot_init,
 APP_END
