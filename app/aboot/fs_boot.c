@@ -140,6 +140,8 @@ void fsboot_test(void)
 
 int fsboot_boot_first(void* target, size_t sz)
 {
+	//企鹅图标已经出现，但是目前会被display_syk_menu清屏
+	//此时common_factor已经为4
 	#if 1
 	//display_error_msg_mdtp();
 	//display_error_msg();

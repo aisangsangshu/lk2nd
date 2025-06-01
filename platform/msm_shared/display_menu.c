@@ -134,7 +134,7 @@ struct unlock_option_msg munlock_option_msg[] = {
 };
 
 static int big_factor = 2;
-static int common_factor = 1;//定义
+int common_factor = 1;//定义
 
 static void wait_for_exit()
 {
@@ -462,7 +462,7 @@ void display_fastboot_menu_renew(struct select_msg_info *fastboot_msg_info)
 	fbcon_draw_line(msg_type);
 	display_fbcon_menu_message(fastboot_option_menu[option_index],
 		msg_type, big_factor);//大号
-	fbcon_draw_line(msg_type);//划线
+	fbcon_draw_line(msg_type);//划绿线
 	
 	display_fbcon_menu_message("\n\nPress volume key to select, and "\
 		"press power key to select 2\n\n", FBCON_COMMON_MSG, common_factor);//白色
@@ -486,7 +486,7 @@ void display_fastboot_menu_renew(struct select_msg_info *fastboot_msg_info)
 
 	memset(msg_buf, 0, sizeof(msg_buf));
 	get_bootloader_version((unsigned char *) msg_buf);
-	unsigned char temp = option_index+0x30;
+	unsigned char temp = common_factor+0x30;
 	memcpy(msg_buf,&temp,1);
 	snprintf(msg, sizeof(msg), "BOOTLOADER VERSION - %s\n",
 		msg_buf);
