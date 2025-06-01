@@ -11,24 +11,7 @@ DTBS += \
 endif
 ifeq ($(PROJECT), msm8953-secondary)
 DTBS += \
-	$(LOCAL_DIR)/msm8953-10or-g.dtb \
-	$(LOCAL_DIR)/msm8953-huawei-milan.dtb \
-	$(LOCAL_DIR)/msm8953-lenovo-kuntao.dtb \
-	$(LOCAL_DIR)/msm8953-meizu-m1721.dtb \
-	$(LOCAL_DIR)/msm8953-motorola-potter.dtb \
-	$(LOCAL_DIR)/msm8953-xiaomi-common.dtb \
-	$(LOCAL_DIR)/msm8953-xiaomi-daisy.dtb \
-	$(LOCAL_DIR)/msm8953-xiaomi-markw.dtb \
-	$(LOCAL_DIR)/msm8953-xiaomi-vince.dtb \
-	$(LOCAL_DIR)/msm8953-xiaomi-ysl.dtb \
-	$(LOCAL_DIR)/sdm450-htc-brepdugl.dtb \
-	$(LOCAL_DIR)/sdm450-lenovo-tbx605f.dtb \
-	$(LOCAL_DIR)/sdm450-samsung-r04.dtb \
-	$(LOCAL_DIR)/sdm450-samsung-r05.dtb \
-	$(LOCAL_DIR)/sdm450-xiaomi-rosy.dtb \
-	$(LOCAL_DIR)/sdm632-fairphone-fp3.dtb \
-	$(LOCAL_DIR)/sdm632-motorola-ocean.dtb \
-	$(LOCAL_DIR)/sdm632-xiaomi-onclite.dtb
+	$(LOCAL_DIR)/msm8953-xiaomi-ysl.dtb
 endif
 ifeq ($(PROJECT), msm8952-secondary)
 DTBS += \
