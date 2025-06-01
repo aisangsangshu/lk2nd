@@ -5235,6 +5235,7 @@ void aboot_init(const struct app_descriptor *app)
 		else
 			display_image_on_screen();
 #else
+//执行
 		target_display_init(device.display_panel);
 #endif
 		dprintf(SPEW, "Display Init: Done\n");

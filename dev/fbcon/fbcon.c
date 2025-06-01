@@ -441,7 +441,7 @@ void fbcon_setup(struct fbcon_config *_config)
                 break;
 	default:
 		dprintf(CRITICAL, "unknown framebuffer pixel format\n");
-		ASSERT(0);
+		ASSERT(0);//异常
 		break;
 	}
 

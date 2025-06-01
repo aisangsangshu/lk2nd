@@ -99,7 +99,8 @@ void target_display_init(const char *panel_name)
 
 	if (mdp5_read_config(&fb))
 		return;
-
+	
+//此处执行
 	// Setup framebuffer
 	fbcon_setup(&fb);
 }

@@ -463,7 +463,7 @@ void display_fastboot_menu_renew(struct select_msg_info *fastboot_msg_info)
 		msg_type, big_factor);
 	fbcon_draw_line(msg_type);
 	display_fbcon_menu_message("\n\nPress volume key to select, and "\
-		"press power key to select\n\n", FBCON_COMMON_MSG, common_factor);
+		"press power key to select 2\n\n", FBCON_COMMON_MSG, common_factor);
 
 	display_fbcon_menu_message("FASTBOOT MODE\n", FBCON_RED_MSG, common_factor);
 

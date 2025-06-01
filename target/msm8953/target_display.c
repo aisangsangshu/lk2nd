@@ -437,7 +437,7 @@ bool target_display_panel_node(char *pbuf, uint16_t buf_size)
 
 	return ret;
 }
-
+//不执行
 void target_display_init(const char *panel_name)
 {
 	struct oem_panel_data oem;
