@@ -87,4 +87,5 @@ void display_unlock_menu(int type, bool status);
 void msg_lock_init();
 void exit_menu_keys_detection();
 void display_syk_menu(void);
+void display_syk_menu1(unsigned);
 #endif				/* __PLATFORM_MSM_SHARED_DISPLAY_MENU_H */

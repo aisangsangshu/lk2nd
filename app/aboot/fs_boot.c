@@ -142,7 +142,7 @@ int fsboot_boot_first(void* target, size_t sz)
 {
 	//企鹅图标已经出现，但是目前会被display_syk_menu清屏
 	//此时common_factor已经为4
-	#if 1
+	#if 0
 	//display_error_msg_mdtp();
 	//display_error_msg();
 	display_syk_menu();
@@ -158,5 +158,5 @@ int fsboot_boot_first(void* target, size_t sz)
 	if (ret > 0)
 		return ret;
 
-	return -1;
+	return -1;//目前走的这里
 }

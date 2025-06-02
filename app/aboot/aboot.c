@@ -5323,6 +5323,10 @@ normal_boot:
 				/* Try to boot from first fs we can find */
 				//能进入fsboot_boot_first函数
 				ssize_t loaded_file = fsboot_boot_first(target_get_scratch_address(), target_get_max_flash_size());
+					//  display_syk_menu1(loaded_file);
+					//  while(1);//可以进来，但是返回-1
+
+					//目前返回-1
 
 				if (loaded_file > 0) {//fsboot_boot_first函数返回-1
 					
