@@ -6,6 +6,7 @@ OUTBOOTIMG := $(BUILDDIR)/lk2nd.img
 
 # Enable fastboot display menu
 ENABLE_FBCON_DISPLAY_MSG := 1
+# $(error $(500))
 DISABLE_CRYPTO := 1
 
 include $(LOCAL_DIR)/msm8953.mk

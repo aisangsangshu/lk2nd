@@ -7,9 +7,12 @@ TARGET := msm8953
 MODULES += app/aboot
 
 ifeq ($(TARGET_BUILD_VARIANT),user)
+$(error $(1))
 DEBUG := 0
 else
+# $(error $(2))
 ifeq ($(DISABLE_LOGGING_BL),1)
+$(error $(3))
 DEBUG := 0
 else
 DEBUG := 1
@@ -19,6 +22,7 @@ endif
 EMMC_BOOT := 1
 
 ifeq ($(ENABLE_DISPLAY),1)
+# $(error $(101))
 DEFINES += ENABLE_DISPLAY=1
 DEFINES += DISPLAY_SPLASH_SCREEN=1
 endif
@@ -27,14 +31,18 @@ ENABLE_SECAPP_LOADER := 1
 ENABLE_RPMB_SUPPORT := 1
 
 ifeq ($(VERIFIED_BOOT),1)
+# $(error $(100))
 ifneq (,$(findstring DISPLAY_SPLASH_SCREEN,$(DEFINES)))
+# $(error $(110))
 #enable fbcon display menu
 ENABLE_FBCON_DISPLAY_MSG := 1
 endif
 endif
 
 ifeq ($(VERIFIED_BOOT_2),1)
+$(error $(102))
 ifneq (,$(findstring DISPLAY_SPLASH_SCREEN,$(DEFINES)))
+$(error $(4))
 #enable fbcon display menu
   ENABLE_FBCON_DISPLAY_MSG := 1
 endif
@@ -79,6 +87,7 @@ DEFINES += MMC_SDHCI_SUPPORT=1
 endif
 
 ifeq ($(ENABLE_FBCON_DISPLAY_MSG),1)
+# $(error $(400))
 DEFINES += FBCON_DISPLAY_MSG=1
 endif
 

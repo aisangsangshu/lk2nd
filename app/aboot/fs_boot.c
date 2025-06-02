@@ -8,7 +8,7 @@
 #include <lib/fs.h>
 
 #include "fs_boot.h"
-
+//可引导？
 static const char *bootable_parts[] = {
 	"system",
 	"system_a",

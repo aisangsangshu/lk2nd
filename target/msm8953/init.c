@@ -84,6 +84,7 @@
 #define PON_SOFT_RB_SPARE       0x88F
 
 #if VERITY_LE
+1
 #define ROOTDEV_CMDLINE    " root=/dev/dm-0 dm=\"system none ro,0 1 android-verity /dev/mmcblk0p"
 #else
 #define ROOTDEV_CMDLINE    " root=/dev/mmcblk0p"
@@ -126,6 +127,7 @@ void target_early_init(void)
 }
 
 #if _APPEND_CMDLINE
+3
 /*
    get_target_boot_params: appends bootparam as per following conditions:
 

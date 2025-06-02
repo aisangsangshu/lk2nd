@@ -57,6 +57,7 @@ OBJS += \
 endif
 
 ifeq ($(ENABLE_FBCON_DISPLAY_MSG),1)
+# $(error $(50))
 OBJS += \
 	$(LOCAL_DIR)/menu_keys_detect.o \
 	$(LOCAL_DIR)/display_menu.o
