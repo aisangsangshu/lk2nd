@@ -1073,6 +1073,7 @@ static char *concat_args(const char *a, const char *b)
 	memcpy(r + lenA + 1, b, lenB + 1);
 	return r;
 }
+//将lk2nd_dev.cmdline结合给cmdline
 
 unsigned char *update_cmdline(const char* cmdline)
 {
@@ -1249,6 +1250,7 @@ void boot_linux(void *kernel, unsigned *tags,
 	struct kernel64_hdr *kptr = ((struct kernel64_hdr*)(PA((addr_t)kernel)));
 
 	ramdisk = (void *)PA((addr_t)ramdisk);
+	//对cmdline修改
 
 	final_cmdline = update_cmdline((const char*)cmdline);
 
@@ -3199,6 +3201,7 @@ void cmd_boot(const char *arg, void *data, unsigned sz)
 	}
 
 #if VERIFIED_BOOT_2
+1
 	/* Pass size of boot partition, as imgsize, to avoid
 	read fewer bytes error */
 	image_actual = partition_get_size(partition_get_index("boot"));
@@ -3281,6 +3284,7 @@ void cmd_boot(const char *arg, void *data, unsigned sz)
 		verify_signed_bootimg((uint32_t)data, image_actual);
 	}
 #ifdef MDTP_SUPPORT
+1
 	else
 	{
 		/* fastboot boot is not allowed when MDTP is activated */
@@ -3306,6 +3310,7 @@ void cmd_boot(const char *arg, void *data, unsigned sz)
 #endif /* VERIFIED_BOOT_2 else */
 
 #if VERIFIED_BOOT
+1
 	if (VB_M == target_get_vb_version())
 	{
 		/* set boot and system versions. */
@@ -3325,6 +3330,7 @@ void cmd_boot(const char *arg, void *data, unsigned sz)
 		out_addr = (unsigned char *)(out_addr + image_actual + page_size);
 		out_avai_len = target_get_max_flash_size() - image_actual - page_size;
 #if VERIFIED_BOOT_2
+1
 		if (dtbo_image_sz)
 			out_avai_len -= DTBO_IMG_BUF;
 #endif
@@ -3391,6 +3397,7 @@ void cmd_boot(const char *arg, void *data, unsigned sz)
 	memmove((void*) hdr->kernel_addr, (char*) (kernel_start_addr), kernel_size);
 //执行
 #if DEVICE_TREE
+//开启着
 	if (check_aboot_addr_range_overlap(hdr->tags_addr, kernel_actual) ||
 		check_ddr_addr_range_bound(hdr->tags_addr, kernel_actual))
 	{
@@ -5313,7 +5320,16 @@ void aboot_init(const struct app_descriptor *app)
 		}
 	}
 #endif
+//打印
+/*
+lk2nd androidboot.emmc=true androidboot.verifiedbootstate=green 
+androidboot.veritymode=enforcing androidboot.keymaster=1 
+androidboot.serialno=28a34c7 pcb_setup=2,0 nubia.isroot=1
+nubia.fastbootrootcount=74 androidboot.baseband=msm 
+mdss_mdp.panel=1:dsi:0:qcom,mdss_dsi_jdi_td4310_1080_2160_5p99_video:1:none:cfg:single_dsi
+jdi_panel_glass_id=2
 
+*/
 normal_boot:
 	if (!boot_into_fastboot)
 	{
@@ -5324,6 +5340,8 @@ normal_boot:
 				//能进入fsboot_boot_first函数
 				ssize_t loaded_file = fsboot_boot_first(target_get_scratch_address(), target_get_max_flash_size());
 					//  display_syk_menu1(loaded_file);
+					display_syk_menu2(lk2nd_dev.cmdline);
+					while(1);
 					//  while(1);//可以进来，但是返回-1
 
 					//目前返回-1

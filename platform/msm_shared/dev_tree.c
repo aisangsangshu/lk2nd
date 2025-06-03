@@ -2328,12 +2328,12 @@ int dev_tree_get_board_id(const void *fdt, struct board_id *board_id)
 	int offset, len;
 	const struct board_id *board_prop;
 
-	offset = fdt_path_offset(fdt, "/");
+	offset = fdt_path_offset(fdt, "/");//获取根节点
 	if (offset < 0) {
 		dprintf(INFO, "Could not find root node in device tree: %d\n", offset);
 		return 1;
 	}
-
+	//找设备树
 	board_prop = (const struct board_id*) fdt_getprop(fdt, offset, "qcom,board-id", &len);
 	if (!board_prop || len < BOARD_ID_SIZE) {
 		dprintf(INFO, "No valid qcom,board-id in device tree\n");

@@ -355,7 +355,7 @@ uint32_t board_baseband()
 {
 	return board.baseband;
 }
-
+//返回8？
 uint32_t board_hardware_id()
 {
 	return board.platform_hw;

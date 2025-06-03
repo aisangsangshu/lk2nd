@@ -48,7 +48,7 @@ const char *hw_platform[] = {
 	[HW_PLATFORM_FLUID] = "Fluid",
 	[HW_PLATFORM_SVLTE] = "SVLTE",
 	[HW_PLATFORM_MTP_MDM] = "MDM_MTP_NO_DISPLAY",
-	[HW_PLATFORM_MTP] = "MTP",
+	[HW_PLATFORM_MTP] = "MTP",//就是8
 	[HW_PLATFORM_RCM] = "RCM",
 	[HW_PLATFORM_LIQUID] = "Liquid",
 	[HW_PLATFORM_DRAGON] = "Dragon",
@@ -268,7 +268,7 @@ size_t smem_get_hw_platform_name(void *buf, uint32_t buf_size)
 		return 1;
 	}
 
-	hw_id = board_hardware_id();
+	hw_id = board_hardware_id();//8？
 	if (hw_id >= ARRAY_SIZE(hw_platform) || hw_platform[hw_id] == '\0')
 		hw_id = HW_PLATFORM_UNKNOWN;
 

@@ -88,4 +88,5 @@ void msg_lock_init();
 void exit_menu_keys_detection();
 void display_syk_menu(void);
 void display_syk_menu1(unsigned);
+void display_syk_menu2(const char* msg_buf);
 #endif				/* __PLATFORM_MSM_SHARED_DISPLAY_MENU_H */

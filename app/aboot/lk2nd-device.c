@@ -45,7 +45,7 @@ static void update_board_id(struct board_id *board_id)
 	if (board_hardware_id() != hw_id) {
 		dprintf(INFO, "Updating board hardware id: 0x%x -> 0x%x\n",
 			board_hardware_id(), hw_id);
-		board.platform_hw = hw_id;
+		board.platform_hw = hw_id;//赋值给platform结构
 	}
 
 	if (board_hardware_subtype() != hw_subtype) {
@@ -87,27 +87,27 @@ static const char *parse_panel(const char *panel)
 	 * Clean up a bit when arg looks like 1:dsi:0:<panel-name>:...
 	 * It could look different, but I don't know how to handle that yet.
 	 */
-	panel_name = strpresuf(panel, "1:dsi:0:");
+	panel_name = strpresuf(panel, "1:dsi:0:");//去掉前缀
 	if (!panel_name) /* Some other format */
 		return NULL;
 
 	/* Cut off other garbage at the end of the string (e.g. :1:none) */
-	end = strchr(panel_name, ':');
+	end = strchr(panel_name, ':');//定位后面：号
 	if (end)
-		*end = 0;
+		*end = 0;//设置为结束
 
 	/* If this isn't the main panel we don't really know how to deal with this */
 	if (strcmp(panel_name, "none") == 0)
 		return NULL;
 
-	return panel_name;
+	return panel_name;//仅保留中间qcom,mdss_dsi_jdi_td4310_1080_2160_5p99_video
 }
 
 static void parse_boot_args(void)
 {
 	char *saveptr;
 	char *args = strdup(lk2nd_dev.cmdline);
-
+//从lk2nd_dev.cmdline分解到结构
 	char *arg = strtok_r(args, " ", &saveptr);
 	while (arg) {
 		const char *aboot = strpresuf(arg, "androidboot.");
@@ -126,7 +126,7 @@ static void parse_boot_args(void)
 	}
 
 	free(args);
-	lk2nd_dev.panel.name = parse_panel(lk2nd_dev.panel.name);
+	lk2nd_dev.panel.name = parse_panel(lk2nd_dev.panel.name);//再次处理
 }
 
 static const char *fdt_copyprop_str(const void *fdt, int offset, const char *prop)
@@ -279,7 +279,7 @@ static void lk2nd_parse_panels(const void *fdt, int offset)
 	const char *old, *new, *ts;
 	int old_len, new_len, ts_len;
 
-	offset = fdt_subnode_offset(fdt, offset, "panel");
+	offset = fdt_subnode_offset(fdt, offset, "panel");//找到子节点
 	if (offset < 0)
 		return;
 
@@ -322,7 +322,7 @@ static void lk2nd_parse_device_node(const void *fdt)
 {
 	const uint32_t *pstore = NULL;
 	int len;
-	int offset = lk2nd_find_device_offset(fdt);
+	int offset = lk2nd_find_device_offset(fdt);//找节点偏移，根据"lk2nd,device"来找？
 	if (offset < 0) {
 		dprintf(CRITICAL, "Failed to find matching lk2nd,device node: %d\n", offset);
 		return;
@@ -330,7 +330,7 @@ static void lk2nd_parse_device_node(const void *fdt)
 
 	lk2nd_samsung_muic_reset(fdt, offset);
 	lk2nd_motorola_smem_write_unit_info(fdt, offset);
-
+	//寻找model属性
 	lk2nd_dev.model = fdt_copyprop_str(fdt, offset, "model");
 	if (lk2nd_dev.model)
 		dprintf(INFO, "Device model: %s\n", lk2nd_dev.model);
@@ -344,7 +344,7 @@ static void lk2nd_parse_device_node(const void *fdt)
 	}
 
 	if (lk2nd_dev.panel.name)
-		lk2nd_parse_panels(fdt, offset);
+		lk2nd_parse_panels(fdt, offset);//找panel节点
 }
 
 
@@ -382,16 +382,16 @@ static void lk2nd_fdt_parse(void)
 
 	lk2nd_dev.fdt = fdt;
 	if (dev_tree_get_board_id(fdt, &board_id) == 0) {
-		update_board_id(&board_id);
+		update_board_id(&board_id);//8？
 	}
-
+	//从设备树取出cmdline
 	lk2nd_dev.cmdline = dev_tree_get_boot_args(fdt);
 	if (lk2nd_dev.cmdline) {
 		dprintf(INFO, "Command line from primary bootloader: ");
 		dputs(INFO, lk2nd_dev.cmdline);
 		dputc(INFO, '\n');
 
-		parse_boot_args();
+		parse_boot_args();//分解cmdline到结构
 	}
 
 	lk2nd_parse_device_node(fdt);

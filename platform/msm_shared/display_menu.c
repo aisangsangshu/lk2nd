@@ -479,7 +479,7 @@ void display_fastboot_menu_renew(struct select_msg_info *fastboot_msg_info)
 	}
 
 	memset(msg_buf, 0, sizeof(msg_buf));
-	smem_get_hw_platform_name((unsigned char *) msg_buf, sizeof(msg_buf));
+	smem_get_hw_platform_name((unsigned char *) msg_buf, sizeof(msg_buf));//8对应MTP
 	snprintf(msg, sizeof(msg), "VARIANT - %s %s\n",
 		msg_buf, target_is_emmc_boot()? "eMMC":"UFS");
 	display_fbcon_menu_message(msg, FBCON_COMMON_MSG, common_factor);
