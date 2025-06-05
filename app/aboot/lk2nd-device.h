@@ -33,6 +33,7 @@ struct lk2nd_device {
 };
 
 extern struct lk2nd_device lk2nd_dev;
+extern struct lk2nd_device lk2nd_dev1;
 
 void lk2nd_init(void);
 int lk2nd_fdt_parse_early_uart(void);

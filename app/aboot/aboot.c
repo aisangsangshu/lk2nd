@@ -5340,7 +5340,7 @@ normal_boot:
 				//能进入fsboot_boot_first函数
 				ssize_t loaded_file = fsboot_boot_first(target_get_scratch_address(), target_get_max_flash_size());
 					//  display_syk_menu1(loaded_file);
-					display_syk_menu2(lk2nd_dev.cmdline);
+					display_syk_menu2(lk2nd_dev1.cmdline);
 					while(1);
 					//  while(1);//可以进来，但是返回-1
 

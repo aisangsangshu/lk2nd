@@ -12,6 +12,7 @@
 #include "lk2nd-device.h"
 //全局变量
 struct lk2nd_device lk2nd_dev = {0};
+struct lk2nd_device lk2nd_dev1 = {0};
 extern struct board_data board;
 
 static void dump_board()
@@ -386,6 +387,8 @@ static void lk2nd_fdt_parse(void)
 	}
 	//从设备树取出cmdline
 	lk2nd_dev.cmdline = dev_tree_get_boot_args(fdt);
+	lk2nd_dev1.cmdline = dev_tree_get_boot_args(fdt);
+	
 	if (lk2nd_dev.cmdline) {
 		dprintf(INFO, "Command line from primary bootloader: ");
 		dputs(INFO, lk2nd_dev.cmdline);
